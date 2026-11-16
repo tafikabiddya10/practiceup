@@ -46,12 +46,18 @@ public class HomeController {
      * Placeholder dashboard shown after login. All feature modules are pending
      * implementation in upcoming sprints (see README.md section 2).
      */
-    @GetMapping("/dashboard")
+      @GetMapping("/dashboard")
     public String dashboard(Model model, Authentication authentication) {
-        if (authentication != null) {
-            userRepository.findByEmail(authentication.getName()).ifPresent(user -> model.addAttribute("user", user));
+        if (authentication == null) {
+            return "redirect:/login";
         }
-        return "dashboard";
+        userRepository.findByEmail(authentication.getName())
+                .ifPresent(user -> model.addAttribute("user", user));
+
+        boolean isTeacher = authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_TEACHER"));
+
+        return isTeacher ? "teacher/dashboard" : "student/dashboard";
     }
 
     @GetMapping("/login")

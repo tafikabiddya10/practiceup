@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: htmlHead('Student Dashboard')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="cq-container">
+        <div th:replace="~{fragments/layout :: flashMessages}"></div>
+
+        <div class="cq-hero">
+            <h1>Your Climb Begins</h1>
+            <p>Welcome, <span th:text="${user != null} ? ${user.name} : 'Adventurer'">Adventurer</span>. Face the monsters, clear the floors, reach the top.</p>
+        </div>
+
+        <div class="cq-grid" style="margin-top:2rem;">
+            <div class="cq-card">
+                <div class="cq-card-title">Current Floor</div>
+                <div class="cq-card-sub">Floor 1 awaits. (Coming soon)</div>
+            </div>
+            <div class="cq-card">
+                <div class="cq-card-title">Monsters Defeated</div>
+                <div class="cq-card-sub">0 defeated so far. (Coming soon)</div>
+            </div>
+            <div class="cq-card">
+                <div class="cq-card-title">Collected Patterns</div>
+                <div class="cq-card-sub">Your architecture pattern collection. (Coming soon)</div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>

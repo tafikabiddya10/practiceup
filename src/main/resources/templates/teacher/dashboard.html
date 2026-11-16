@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: htmlHead('Teacher Dashboard')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="cq-container">
+        <div th:replace="~{fragments/layout :: flashMessages}"></div>
+
+        <div class="cq-hero">
+            <h1>Teacher Dashboard</h1>
+            <p>Welcome, <span th:text="${user != null} ? ${user.name} : 'Teacher'">Teacher</span>.</p>
+        </div>
+
+        <div class="cq-grid" style="margin-top:2rem;">
+            <div class="cq-card">
+                <div class="cq-card-title">Classes</div>
+                <div class="cq-card-sub">Manage your classes and students. (Coming soon)</div>
+            </div>
+            <div class="cq-card">
+                <div class="cq-card-title">Quests</div>
+                <div class="cq-card-sub">Create and assign challenges. (Coming soon)</div>
+            </div>
+            <div class="cq-card">
+                <div class="cq-card-title">Student Progress</div>
+                <div class="cq-card-sub">Track how students climb the castle. (Coming soon)</div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>
