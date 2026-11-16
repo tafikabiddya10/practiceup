@@ -1,0 +1,271 @@
+﻿/* ===================================================================
+   CodeQuest Retro RPG & Modern Theme Stylesheet
+   =================================================================== */
+
+:root {
+    --bg-dark: #0f141c;
+    --bg-card: #18202c;
+    --bg-card-hover: #1f2a3a;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --accent: #f59e0b;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-color: #2e384d;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --bg-ombre: linear-gradient(180deg,
+            #0f141c 0%,
+            #131a2b 30%,
+            #1e1b4b 62%,
+            #2c1d5c 82%,
+            #3b2367 100%);
+    /* Subtle static grid pattern: 1px lines at ~6% white opacity, drawn
+       with repeating-linear-gradient + background-size (pure CSS, no
+       animation/JS). */
+    --grid-color: rgba(255, 255, 255, 0.06);
+    --grid-size: 32px;
+    --grid-x: repeating-linear-gradient(to right,
+            var(--grid-color) 0 1px,
+            transparent 1px var(--grid-size));
+    --grid-y: repeating-linear-gradient(to bottom,
+            var(--grid-color) 0 1px,
+            transparent 1px var(--grid-size));
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    /* Layered background: subtle static architectural grid lines on top of
+       the ombre gradient (deep slate -> indigo -> soft violet). Pure CSS —
+       repeating-linear-gradient + background-size, no animation, no JS.
+       Fixed attachment keeps it filling the full viewport height even on
+       long pages; the darkest tone stays the fallback color. */
+    background-color: var(--bg-dark);
+    background-image: var(--grid-x), var(--grid-y), var(--bg-ombre);
+    background-attachment: fixed;
+    background-size: var(--grid-size) var(--grid-size),
+                     var(--grid-size) var(--grid-size),
+                     100% 100%;
+    background-repeat: repeat, repeat, no-repeat;
+    color: var(--text-main);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+}
+
+/* Navbar */
+.cq-navbar {
+    background-color: #121824;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.85rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Inline monochrome line icons (Lucide-style SVGs) */
+.cq-icon {
+    width: 1.125em;
+    height: 1.125em;
+    vertical-align: -0.2em;
+    flex-shrink: 0;
+}
+
+.cq-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cq-brand span {
+    color: var(--primary);
+}
+
+.cq-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.cq-nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.cq-nav-link:hover, .cq-nav-link.active {
+    color: #fff;
+}
+
+.cq-user-badge {
+    background: #252f42;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Container */
+.cq-container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    flex: 1;
+}
+
+/* Cards */
+.cq-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1.5rem;
+}
+
+.cq-card-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #fff;
+}
+
+.cq-card-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Grid */
+.cq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Hero */
+.cq-hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem 1rem;
+}
+
+.cq-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cq-hero p {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* Buttons */
+.cq-btn {
+    display: inline-block;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.cq-btn-primary {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.cq-btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.cq-btn-secondary {
+    background-color: #2b3548;
+    color: var(--text-main);
+}
+
+.cq-btn-secondary:hover {
+    background-color: #37435c;
+}
+
+.cq-btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+/* Forms */
+.cq-form-group {
+    margin-bottom: 1.25rem;
+}
+
+.cq-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+    font-weight: 500;
+}
+
+.cq-input, .cq-select, .cq-textarea {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    background-color: #0b1017;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.cq-input:focus, .cq-select:focus, .cq-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+}
+
+/* Alerts */
+.cq-alert {
+    padding: 0.85rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+}
+
+.cq-alert-success {
+    background-color: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--accent-green);
+    color: #6ee7b7;
+}
+
+.cq-alert-error {
+    background-color: rgba(239, 68, 68, 0.15);
+    border: 1px solid var(--accent-red);
+    color: #fca5a5;
+}
+

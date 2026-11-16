@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: htmlHead('Log In')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="cq-container" style="max-width: 480px;">
+        <div th:replace="~{fragments/layout :: flashMessages}"></div>
+
+        <div th:if="${param.error}" class="cq-alert cq-alert-error">
+            Invalid email or password. Please try again.
+        </div>
+        <div th:if="${param.logout}" class="cq-alert cq-alert-success">
+            You have been logged out successfully.
+        </div>
+
+        <div class="cq-card">
+            <h2 class="cq-card-title" style="text-align:center;">Enter the Castle</h2>
+            <p class="cq-card-sub" style="text-align:center;">Sign in to resume your learning quest</p>
+
+            <form th:action="@{/login}" method="post">
+                <div class="cq-form-group">
+                    <label class="cq-label" for="username">Email Address</label>
+                    <input type="email" id="username" name="username" class="cq-input" required autofocus placeholder="name@example.com">
+                </div>
+
+                <div class="cq-form-group">
+                    <label class="cq-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="cq-input" required placeholder="••••••••">
+                </div>
+
+                <button type="submit" class="cq-btn cq-btn-primary" style="width:100%; margin-top:0.5rem;">Log In</button>
+            </form>
+
+            <p style="text-align:center; margin-top:1.25rem; font-size:0.9rem; color:var(--text-muted);">
+                Don't have an account? <a th:href="@{/register}" style="color:var(--primary);">Register here</a>
+            </p>
+        </div>
+
+        <!-- Demo Credentials Helper -->
+        <div class="cq-card" style="padding:1rem; font-size:0.85rem; border-color:#374151;">
+            <div style="font-weight:700; color:#fbbf24; margin-bottom:0.4rem;">
+                <svg class="cq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/>
+                    <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>
+                </svg>
+                Default Demo Accounts:
+            </div>
+            <div><strong>Teacher:</strong> teacher@codequest.com / <code>password123</code></div>
+            <div><strong>Student:</strong> student@codequest.com / <code>password123</code></div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>

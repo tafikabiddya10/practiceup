@@ -1,0 +1,15 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: codequest-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: codequest
+    ports:
+      - "3306:3306"
+    volumes:
+      - codequest-mysql-data:/var/lib/mysql
+
+volumes:
+  codequest-mysql-data:

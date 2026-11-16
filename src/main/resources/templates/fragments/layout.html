@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="htmlHead(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} + ' — CodeQuest'">CodeQuest</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+    <!-- Shared Navigation Bar -->
+    <nav th:fragment="navbar" class="cq-navbar">
+        <a th:href="@{/}" class="cq-brand">
+            <svg class="cq-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 21V9l2-3V4h2v2h2V4h2v2h2V4h2v2l2 3v12"/>
+                <path d="M4 21h16"/>
+                <path d="M10 21v-4a2 2 0 0 1 4 0v4"/>
+            </svg>
+            <span>Code</span>Quest
+        </a>
+
+        <div class="cq-nav-links">
+            <!-- Unauthenticated -->
+            <div sec:authorize="isAnonymous()" style="display:flex; gap:1rem; align-items:center;">
+                <a th:href="@{/login}" class="cq-nav-link">Log In</a>
+                <a th:href="@{/register}" class="cq-btn cq-btn-primary cq-btn-sm">Register</a>
+            </div>
+
+            <!-- Teacher links -->
+            <div sec:authorize="hasAuthority('ROLE_TEACHER')" style="display:flex; gap:1.25rem; align-items:center;">
+                <span class="cq-user-badge">TEACHER</span>
+                <a th:href="@{/dashboard}" class="cq-nav-link">Dashboard</a>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="cq-btn cq-btn-secondary cq-btn-sm">Log out</button>
+                </form>
+            </div>
+
+            <!-- Student links -->
+            <div sec:authorize="hasAuthority('ROLE_STUDENT')" style="display:flex; gap:1.25rem; align-items:center;">
+                <span class="cq-user-badge" style="color:#60a5fa;">STUDENT</span>
+                <a th:href="@{/dashboard}" class="cq-nav-link">Dashboard</a>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="cq-btn cq-btn-secondary cq-btn-sm">Log out</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash message banners -->
+    <div th:fragment="flashMessages" th:remove="tag">
+        <div th:if="${successMessage}" class="cq-alert cq-alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="cq-alert cq-alert-error" th:text="${errorMessage}"></div>
+    </div>
+
+    <!-- Shared Footer -->
+    <footer th:fragment="footer" class="cq-footer">
+        CodeQuest &copy; 2026 &bull; Architecture-first gamified learning &bull; Deadline: Nov 17, 2026
+    </footer>
+
+</body>
+</html>

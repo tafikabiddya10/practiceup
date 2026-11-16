@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: htmlHead('Welcome')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="cq-container">
+        <div th:replace="~{fragments/layout :: flashMessages}"></div>
+
+        <div class="cq-hero">
+            <h1>Climb the Castle. Master Architecture.</h1>
+            <p>CodeQuest shifts learning from syntax drills to real system workflows. Defeat monsters floor by floor, collect architectural patterns, and assemble full codebases.</p>
+            <div style="display:flex; justify-content:center; gap:1rem;">
+                <a th:href="@{/login}" class="cq-btn cq-btn-primary">Start Climbing (Login)</a>
+                <a th:href="@{/register}" class="cq-btn cq-btn-secondary">Create Account</a>
+            </div>
+        </div>
+
+        <div class="cq-grid" style="margin-top:2rem;">
+            <div class="cq-card">
+                <div class="cq-card-title">
+                    <svg class="cq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 21V9l2-3V4h2v2h2V4h2v2h2V4h2v2l2 3v12"/>
+                        <path d="M4 21h16"/>
+                        <path d="M10 21v-4a2 2 0 0 1 4 0v4"/>
+                    </svg>
+                    Castle &amp; Floors
+                </div>
+                <div class="cq-card-sub">Levels are structured as vertical towers. Advance only by clearing obstacles guarding each floor.</div>
+            </div>
+            <div class="cq-card">
+                <div class="cq-card-title">
+                    <svg class="cq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="12" r="1"/>
+                        <circle cx="15" cy="12" r="1"/>
+                        <path d="M8 20v2h8v-2"/>
+                        <path d="M16 20a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20"/>
+                    </svg>
+                    Monsters &amp; Obstacles
+                </div>
+                <div class="cq-card-sub">Face interactive coding assessments, logic challenges, and progressive 3-tier hints.</div>
+            </div>
+            <div class="cq-card">
+                <div class="cq-card-title">
+                    <svg class="cq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
+                        <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2h4"/>
+                    </svg>
+                    Whole Code Revealed
+                </div>
+                <div class="cq-card-sub">Reach the top of the tower to review the entire synthesized codebase and share insights.</div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>

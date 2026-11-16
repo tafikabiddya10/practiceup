@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: htmlHead('Register')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="cq-container" style="max-width: 520px;">
+        <div th:replace="~{fragments/layout :: flashMessages}"></div>
+
+        <div class="cq-card">
+            <h2 class="cq-card-title" style="text-align:center;">Join CodeQuest</h2>
+            <p class="cq-card-sub" style="text-align:center;">Create your student or teacher account</p>
+
+            <form th:action="@{/register}" th:object="${registerForm}" method="post">
+                <div class="cq-form-group">
+                    <label class="cq-label" for="name">Full Name</label>
+                    <input type="text" id="name" th:field="*{name}" class="cq-input" required placeholder="Ada Lovelace">
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div class="cq-form-group">
+                    <label class="cq-label" for="email">Email Address</label>
+                    <input type="email" id="email" th:field="*{email}" class="cq-input" required placeholder="ada@university.edu">
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div class="cq-form-group">
+                    <label class="cq-label" for="password">Password (min 6 chars)</label>
+                    <input type="password" id="password" th:field="*{password}" class="cq-input" required placeholder="••••••••">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div class="cq-form-group">
+                    <label class="cq-label" for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" th:field="*{confirmPassword}" class="cq-input" required placeholder="••••••••">
+                    <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div class="cq-form-group">
+                    <label class="cq-label" for="roleSelect">Account Role</label>
+                    <select id="roleSelect" th:field="*{role}" class="cq-select" onchange="toggleTeacherCode(this.value)">
+                        <option value="STUDENT">Student (Climb and play castles)</option>
+                        <option value="TEACHER">Teacher (Create castles and classes)</option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div class="cq-form-group" id="teacherCodeGroup" style="display:none;">
+                    <label class="cq-label" for="teacherCode">Teacher Registration Code (Default: <code>TEACH-2026</code>)</label>
+                    <input type="text" id="teacherCode" th:field="*{teacherCode}" class="cq-input" placeholder="Enter teacher code">
+                    <div th:if="${#fields.hasErrors('teacherCode')}" th:errors="*{teacherCode}" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <button type="submit" class="cq-btn cq-btn-primary" style="width:100%; margin-top:0.5rem;">Create Account</button>
+            </form>
+
+            <p style="text-align:center; margin-top:1.25rem; font-size:0.9rem; color:var(--text-muted);">
+                Already have an account? <a th:href="@{/login}" style="color:var(--primary);">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleTeacherCode(val) {
+            const group = document.getElementById('teacherCodeGroup');
+            if (val === 'TEACHER') {
+                group.style.display = 'block';
+            } else {
+                group.style.display = 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('roleSelect');
+            if (select) toggleTeacherCode(select.value);
+        });
+    </script>
+
+    <div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>

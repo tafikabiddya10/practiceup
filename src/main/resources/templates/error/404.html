@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: htmlHead('Page Not Found')}"></head>
+<body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="cq-container" style="text-align:center; padding-top:4rem;">
+        <h1 style="font-size:3rem; margin-bottom:1rem; color:var(--accent);">404</h1>
+        <h2 style="margin-bottom:1rem;">Page Not Found</h2>
+        <p th:text="${errorMessage} ?: 'The castle corridor you are looking for does not exist.'" style="color:var(--text-muted); margin-bottom:2rem;"></p>
+        <a th:href="@{/}" class="cq-btn cq-btn-primary">Return Home</a>
+    </div>
+
+    <div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>
